@@ -38,6 +38,62 @@
     if (event.matches) setMotion(true, false);
   });
 
+  const buildPlayer = button => {
+    const provider = button.dataset.provider;
+    if (provider === 'soundcloud') {
+      const source = encodeURIComponent(button.dataset.url);
+      const iframe = document.createElement('iframe');
+      iframe.title = 'SoundCloud player';
+      iframe.height = '166';
+      iframe.loading = 'lazy';
+      iframe.allow = 'autoplay';
+      iframe.src = `https://w.soundcloud.com/player/?url=${source}&color=%23ee1f09&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false`;
+      return iframe;
+    }
+
+    if (provider === 'spotify') {
+      const iframe = document.createElement('iframe');
+      iframe.title = 'Spotify player';
+      iframe.height = '352';
+      iframe.loading = 'lazy';
+      iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      iframe.src = `https://open.spotify.com/embed/${button.dataset.kind}/${button.dataset.id}?utm_source=oembed`;
+      return iframe;
+    }
+
+    return null;
+  };
+
+  document.querySelectorAll('.preview-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const panel = document.getElementById(button.getAttribute('aria-controls'));
+      const opening = button.getAttribute('aria-expanded') !== 'true';
+      const card = button.closest('.media-card, .playlist-card');
+
+      button.setAttribute('aria-expanded', String(opening));
+      panel.hidden = !opening;
+      card?.classList.toggle('is-open', opening);
+
+      if (opening && !panel.dataset.loaded) {
+        panel.innerHTML = '<div class="media-preview__loading">LOADING PLAYER</div>';
+        const player = buildPlayer(button);
+        if (player) {
+          const clearLoading = () => panel.querySelector('.media-preview__loading')?.remove();
+          player.addEventListener('load', clearLoading, { once: true });
+          window.setTimeout(clearLoading, 5000);
+          panel.append(player);
+          panel.dataset.loaded = 'true';
+        } else {
+          panel.innerHTML = '<div class="media-preview__error">PLAYER UNAVAILABLE. USE THE OPEN LINK.</div>';
+        }
+      }
+
+      if (!opening) {
+        panel.querySelector('iframe')?.contentWindow?.postMessage(JSON.stringify({ method: 'pause' }), '*');
+      }
+    });
+  });
+
   window.setTimeout(() => intro.classList.add('is-done'), reduceMotion.matches ? 0 : 1350);
 
   const revealItems = document.querySelectorAll('.reveal');
