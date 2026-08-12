@@ -750,7 +750,7 @@ button {
 
 .playlist-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   align-items: start;
   gap: 8px;
 }
@@ -762,6 +762,11 @@ button {
   border: 1px solid var(--line);
   background: rgba(9,8,7,.9);
   transition: transform .35s var(--ease), border-color .3s;
+}
+
+.playlist-card:not(.is-open) {
+  display: grid;
+  grid-template-columns: minmax(0, 52%) minmax(0, 48%);
 }
 
 .playlist-card:hover,
@@ -782,8 +787,13 @@ button {
   object-fit: cover;
 }
 
+.playlist-card:not(.is-open) > img {
+  grid-row: 1 / span 2;
+  height: 100%;
+}
+
 .playlist-card__copy {
-  min-height: 132px;
+  min-height: 0;
   padding: 14px;
 }
 
@@ -803,6 +813,10 @@ button {
   margin: 9px 0 0;
   color: var(--muted);
   font: 600 8px/1.38 var(--mono);
+}
+
+.playlist-card:not(.is-open) .playlist-card__controls {
+  border-top: 1px solid var(--line);
 }
 
 .contact-grid {
