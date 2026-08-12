@@ -2,23 +2,25 @@
   const body = document.body;
   const video = document.getElementById('roar-video');
   const intro = document.getElementById('intro');
-  const toggle = document.getElementById('motion-toggle');
+  const motionToggle = document.getElementById('motion-toggle');
+  const backgroundAudio = document.getElementById('background-audio');
+  const audioToggle = document.getElementById('audio-toggle');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const saveData = Boolean(navigator.connection && navigator.connection.saveData);
   const storedMotion = localStorage.getItem('gaende-motion');
 
   const setMotion = (paused, remember = true) => {
     body.classList.toggle('motion-paused', paused);
-    toggle.setAttribute('aria-pressed', String(paused));
-    toggle.textContent = paused ? 'PLAY MOTION' : 'PAUSE MOTION';
+    motionToggle.setAttribute('aria-pressed', String(paused));
+    motionToggle.textContent = paused ? 'PLAY MOTION' : 'PAUSE MOTION';
 
     if (paused) {
       video.pause();
     } else {
       video.play().catch(() => {
         body.classList.add('motion-paused');
-        toggle.setAttribute('aria-pressed', 'true');
-        toggle.textContent = 'PLAY MOTION';
+        motionToggle.setAttribute('aria-pressed', 'true');
+        motionToggle.textContent = 'PLAY MOTION';
       });
     }
 
@@ -30,8 +32,36 @@
   const initialPause = reduceMotion.matches || saveData || storedMotion === 'paused';
   setMotion(initialPause, false);
 
-  toggle.addEventListener('click', () => {
-    setMotion(!body.classList.contains('motion-paused'));
+  motionToggle.addEventListener('click', () => {
+    setMotion(!document.body.classList.contains('motion-paused'), true);
+  });
+
+  const setAudio = async playing => {
+    if (playing) {
+      try {
+        backgroundAudio.volume = 0.32;
+        await backgroundAudio.play();
+        audioToggle.setAttribute('aria-pressed', 'true');
+        audioToggle.setAttribute('aria-label', 'Pause Inhale background music');
+        audioToggle.querySelector('span').textContent = 'Ⅱ';
+      } catch {
+        audioToggle.setAttribute('aria-pressed', 'false');
+      }
+    } else {
+      backgroundAudio.pause();
+      audioToggle.setAttribute('aria-pressed', 'false');
+      audioToggle.setAttribute('aria-label', 'Play Inhale as background music');
+      audioToggle.querySelector('span').textContent = '▶';
+    }
+  };
+
+  audioToggle.addEventListener('click', () => {
+    setAudio(backgroundAudio.paused);
+  });
+
+  backgroundAudio.addEventListener('error', () => {
+    audioToggle.disabled = true;
+    audioToggle.textContent = 'AUDIO UNAVAILABLE';
   });
 
   reduceMotion.addEventListener?.('change', event => {

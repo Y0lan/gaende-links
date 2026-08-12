@@ -203,9 +203,48 @@ button {
   cursor: pointer;
 }
 
-.motion-toggle:hover,
-.motion-toggle:focus-visible {
+.masthead__toggles {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.audio-toggle {
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  background: transparent;
   color: var(--gold);
+  font: 700 9px/1 var(--mono);
+  letter-spacing: .1em;
+  cursor: pointer;
+}
+
+.audio-toggle span {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 7px;
+}
+
+.motion-toggle:hover,
+.motion-toggle:focus-visible,
+.audio-toggle:hover,
+.audio-toggle:focus-visible {
+  color: var(--gold);
+  outline: none;
+}
+
+.audio-toggle[aria-pressed="true"] span {
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--cream);
 }
 
 .reticle {
@@ -880,6 +919,9 @@ button {
 }
 
 @media (max-width: 410px) {
+  .masthead__toggles { gap: 7px; }
+  .audio-toggle,
+  .motion-toggle { font-size: 7px; letter-spacing: .06em; }
   .release-card {
     grid-template-columns: 38% 62%;
     min-height: 238px;

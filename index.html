@@ -36,8 +36,15 @@
     <header class="masthead reveal">
       <div class="masthead__status">
         <span><i class="status-dot"></i> GAENDE / ONLINE</span>
-        <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">PAUSE MOTION</button>
+        <div class="masthead__toggles">
+          <button class="audio-toggle" id="audio-toggle" type="button" aria-pressed="false" aria-label="Play Inhale as background music"><span aria-hidden="true">▶</span> INHALE</button>
+          <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">PAUSE MOTION</button>
+        </div>
       </div>
+
+      <audio id="background-audio" preload="none" loop>
+        <source src="assets/audio/inhale-background.mp3" type="audio/mpeg">
+      </audio>
 
       <div class="reticle reticle--tl" aria-hidden="true"></div>
       <div class="reticle reticle--tr" aria-hidden="true"></div>
