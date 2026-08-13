@@ -825,7 +825,8 @@ button {
   height: 15px;
 }
 
-.preview-toggle .preview-caret {
+.preview-toggle .toggle-caret,
+.collection-toggle .toggle-caret {
   width: 6px;
   height: 6px;
   display: inline-block;
@@ -836,7 +837,8 @@ button {
   transition: transform .25s var(--ease);
 }
 
-.preview-toggle[aria-expanded="true"] .preview-caret {
+.preview-toggle[aria-expanded="true"] .toggle-caret,
+.collection-toggle[aria-expanded="true"] .toggle-caret {
   transform: rotate(225deg);
 }
 
