@@ -124,6 +124,23 @@
     });
   });
 
+  document.querySelectorAll('.collection-toggle').forEach(button => {
+    const browser = document.getElementById(button.getAttribute('aria-controls'));
+    if (!browser) return;
+
+    const syncCollectionState = () => {
+      button.setAttribute('aria-expanded', String(browser.open));
+      button.closest('.media-card')?.classList.toggle('is-open', browser.open);
+    };
+
+    button.addEventListener('click', () => {
+      browser.open = !browser.open;
+      syncCollectionState();
+    });
+
+    browser.addEventListener('toggle', syncCollectionState);
+  });
+
   window.setTimeout(() => intro.classList.add('is-done'), reduceMotion.matches ? 0 : 1350);
 
   const revealItems = document.querySelectorAll('.reveal');
