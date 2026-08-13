@@ -825,14 +825,19 @@ button {
   height: 15px;
 }
 
-.preview-toggle span {
+.preview-toggle .preview-caret {
+  width: 6px;
+  height: 6px;
   display: inline-block;
-  font-size: 16px;
+  flex: 0 0 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg);
   transition: transform .25s var(--ease);
 }
 
-.preview-toggle[aria-expanded="true"] span {
-  transform: rotate(180deg);
+.preview-toggle[aria-expanded="true"] .preview-caret {
+  transform: rotate(225deg);
 }
 
 .media-preview {
