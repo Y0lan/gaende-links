@@ -757,6 +757,19 @@ button {
   font: 700 8px/1 var(--mono);
 }
 
+.album-tracklist a > i {
+  color: var(--gold);
+  font: normal 15px/1 var(--sans);
+}
+
+.collection-browser:target {
+  border-color: var(--gold);
+}
+
+.collection-tracklist strong {
+  overflow-wrap: anywhere;
+}
+
 .album-tracklist strong {
   min-width: 0;
   font: 800 13px/1.1 var(--sans);

@@ -77,7 +77,7 @@
       iframe.height = '166';
       iframe.loading = 'lazy';
       iframe.allow = 'autoplay';
-      iframe.src = `https://w.soundcloud.com/player/?url=${source}&color=%23ee1f09&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false`;
+      iframe.src = `https://w.soundcloud.com/player/?url=${source}&color=%23ee1f09&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false`;
       return iframe;
     }
 
