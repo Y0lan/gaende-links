@@ -350,7 +350,9 @@ button {
   background: rgba(240,237,229,.06);
 }
 
-.socials a span img {
+.socials a span img,
+.socials a span svg {
+  display: block;
   width: 15px;
   height: 15px;
 }
