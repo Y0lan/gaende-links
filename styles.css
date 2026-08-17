@@ -161,7 +161,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding: 20px 14px 38px;
+  padding: 20px 14px max(72px, calc(38px + env(safe-area-inset-bottom, 0px)));
 }
 
 .masthead__status {
@@ -364,6 +364,37 @@ button {
   border-color: var(--gold);
   background: rgba(224, 138, 60, .12);
   color: var(--cream);
+  outline: none;
+}
+
+.hunt-jump {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 7px;
+  border: 1px solid var(--line);
+  padding: 14px;
+  background: rgba(9, 8, 7, .6);
+  color: var(--cream);
+  font: 700 11px/1 var(--mono);
+  letter-spacing: .14em;
+  text-decoration: none;
+  transition: transform .3s var(--ease), border-color .3s, background .3s;
+}
+
+.hunt-jump i {
+  color: var(--gold);
+  font: normal 16px/1 var(--sans);
+}
+
+.hunt-jump:hover,
+.hunt-jump:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  background: rgba(224, 138, 60, .12);
   outline: none;
 }
 
