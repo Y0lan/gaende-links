@@ -617,6 +617,14 @@ button {
   letter-spacing: .18em;
 }
 
+.kicker--new {
+  color: var(--red);
+}
+
+.media-card--new {
+  border-color: var(--red);
+}
+
 .release-card h2 {
   margin: 0;
   font: 900 clamp(42px, 13vw, 68px)/.88 var(--display);
