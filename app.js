@@ -143,23 +143,6 @@
 
   window.setTimeout(() => intro.classList.add('is-done'), reduceMotion.matches ? 0 : 1350);
 
-  // TRACK HUNT title: drawn as an SVG whose viewBox is the exact glyph ink, so the outlined letters run
-  // from the left edge of the first cover to the right edge of the last, with no font-box slack.
-  const fitTitle = () => {
-    const h = document.getElementById('playlists-title');
-    if (!h) return;
-    const text = 'TRACK HUNT', FS = 100;
-    const cs = getComputedStyle(h);
-    const ctx = document.createElement('canvas').getContext('2d');
-    ctx.font = `${cs.fontWeight} ${FS}px ${cs.fontFamily}`;
-    const m = ctx.measureText(text);
-    const x0 = -m.actualBoundingBoxLeft, x1 = m.actualBoundingBoxRight, y0 = -m.actualBoundingBoxAscent, y1 = m.actualBoundingBoxDescent;
-    const fam = cs.fontFamily.replace(/"/g, "'");
-    h.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}" aria-hidden="true"><text x="0" y="0" font-family="${fam}" font-weight="${cs.fontWeight}" font-size="${FS}">${text}</text></svg><span class="visually-hidden">${text}</span>`;
-  };
-  fitTitle();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
-
   const revealItems = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window) || reduceMotion.matches) {
     revealItems.forEach(item => item.classList.add('is-visible'));

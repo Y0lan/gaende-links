@@ -589,23 +589,17 @@ button {
 .section-label--stack h2 {
   display: block;
   width: 100%;
-  font: 900 100px/1 var(--display);
-  letter-spacing: 0;
+  margin: 0;
   line-height: 0;
 }
 
-.section-label--stack h2 svg {
+/* The title is a pre-outlined SVG (assets/track-hunt-title.svg, Bricolage 800 condensed): its viewBox is the
+   glyph ink plus half a stroke, so the outline's outer edge sits exactly on the cover-art edge, left and right,
+   with no font fallback and no slack above or below. */
+.section-label--stack h2 img {
   display: block;
   width: 100%;
   height: auto;
-  overflow: visible;
-}
-
-.section-label--stack h2 svg text {
-  fill: none;
-  stroke: var(--cream);
-  stroke-width: 1px;
-  vector-effect: non-scaling-stroke;
 }
 
 .section-label__brand {
