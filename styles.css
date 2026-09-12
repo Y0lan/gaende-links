@@ -905,6 +905,13 @@ button {
   font-size: clamp(42px, 14vw, 68px);
 }
 
+/* Card titles never leave their column: app.js measures each h2 and shrinks the font until the word fits the
+   copy width (min 22px, then it wraps). The CSS sizes above are the ceiling; DATALOSS on a 384px phone lands at 34px. */
+.media-card__copy h2 {
+  white-space: nowrap;
+  max-width: 100%;
+}
+
 .media-card__copy > p:last-child {
   margin: 10px 0 0;
   color: var(--muted);

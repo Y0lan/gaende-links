@@ -143,6 +143,20 @@
 
   window.setTimeout(() => intro.classList.add('is-done'), reduceMotion.matches ? 0 : 1350);
 
+  // Release titles (DATALOSS, ROAR, …) shrink to their column: the CSS size is a ceiling, never an overflow.
+  const fitHeadings = () => {
+    document.querySelectorAll('.media-card__copy h2').forEach((h) => {
+      h.style.fontSize = ''; h.style.whiteSpace = '';
+      const max = h.clientWidth;
+      let size = parseFloat(getComputedStyle(h).fontSize);
+      while (size > 22 && h.scrollWidth > max + 0.5) { size -= 1; h.style.fontSize = `${size}px`; }
+      if (h.scrollWidth > max + 0.5) h.style.whiteSpace = 'normal'; // multi-word titles wrap before dropping under 22px
+    });
+  };
+  fitHeadings();
+  window.addEventListener('resize', fitHeadings);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeadings);
+
   const revealItems = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window) || reduceMotion.matches) {
     revealItems.forEach(item => item.classList.add('is-visible'));
