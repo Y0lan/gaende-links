@@ -574,15 +574,15 @@ button {
 
 /* Track Hunt header: brand line on top, the title on one line below it. */
 /* Track Hunt header, on a 16px rhythm: CURATED BY · 8 · logo ink · 16 · TRACK HUNT ink · 16 · rule · 16 · cards.
-   The title is drawn by app.js as an SVG whose viewBox is the glyph ink, so it spans the cover art edge to
-   edge with no font-box slack above or below. */
+   The block is inset 14px like the BROWSE SETS row (same inner padding as .album-browser summary), so the
+   kicker, the logo and the title all start where that text starts. */
 .playlists { padding-top: 40px; }
 
 .section-label--stack {
   flex-direction: column;
   align-items: stretch;
   gap: 16px;
-  padding: 0 0 16px;
+  padding: 0 14px 16px;
   margin-bottom: 16px;
 }
 
@@ -593,7 +593,8 @@ button {
   line-height: 0;
 }
 
-/* The title is a pre-outlined SVG (assets/track-hunt-title.svg, Bricolage 800 condensed): its viewBox is the
+/* The title is a pre-outlined SVG (assets/track-hunt-title.svg, Archivo Narrow 700, the condensed grotesque of
+   the original stacked title): its viewBox is the
    glyph ink plus half a stroke, so the outline's outer edge sits exactly on the cover-art edge, left and right,
    with no font fallback and no slack above or below. */
 .section-label--stack h2 img {
