@@ -617,12 +617,13 @@ button {
 
 .section-label__brand span { font-size: 9px; }
 
-/* The SVG carries 26/720 empty on the left and 38/180 above the ink: trim so the ink sits on the edge. */
+/* The SVG carries 26/720 empty on the left and 38/180 above the ink: trim so the ink sits on the edge.
+   22px box → ink 12.6px tall: a byline under the kicker; the title stays the loud element. */
 .section-label__brand img {
-  height: 40px;
+  height: 22px;
   width: auto;
   display: block;
-  margin: -8.4px 0 -8.7px -5.8px;
+  margin: -4.65px 0 -4.75px -3.2px;
   filter: drop-shadow(0 0 12px rgba(238,31,9,.35));
 }
 
