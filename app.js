@@ -143,6 +143,24 @@
 
   window.setTimeout(() => intro.classList.add('is-done'), reduceMotion.matches ? 0 : 1350);
 
+  // TRACK HUNT title: one line, fitted to the exact width of the playlist grid (cover edge to cover edge).
+  const fitTitle = () => {
+    const h = document.getElementById('playlists-title');
+    const grid = document.querySelector('.playlist-grid');
+    if (!h || !grid) return;
+    h.style.transform = 'none';
+    const target = grid.getBoundingClientRect().width;
+    const w = h.getBoundingClientRect().width;
+    if (!w || !target) return;
+    const k = target / w;
+    h.style.transform = `scale(${k})`;
+    h.style.height = `${h.offsetHeight * k}px`;
+    h.style.width = `${w}px`;
+  };
+  fitTitle();
+  window.addEventListener('resize', fitTitle);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitle);
+
   const revealItems = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window) || reduceMotion.matches) {
     revealItems.forEach(item => item.classList.add('is-visible'));

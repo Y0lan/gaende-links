@@ -573,20 +573,23 @@ button {
 }
 
 /* Track Hunt header: brand line on top, the title on one line below it. */
-/* --art-inset = card border (1px) + art padding (16px): header text sits on the cover-art edge, not the card edge. */
+/* Track Hunt header: brand block (CURATED BY / logo) then the title, all flush with the cover art below.
+   The title is fitted by app.js to the exact width of the playlist grid, so it spans the covers edge to edge
+   on every device font. */
 .section-label--stack {
-  --art-inset: 17px;
   flex-direction: column;
   align-items: flex-start;
   gap: 22px;
-  padding: 6px var(--art-inset) 30px;
+  padding: 6px 0 28px;
   margin-bottom: 26px;
 }
 
 .section-label--stack h2 {
   white-space: nowrap;
-  font-size: clamp(34px, 12.6vw, 72px);
-  line-height: .9;
+  font-size: 60px;
+  line-height: .86;
+  letter-spacing: 0;
+  transform-origin: left top;
 }
 
 .section-label__brand {
@@ -596,8 +599,7 @@ button {
   gap: 10px;
 }
 
-/* The SVG carries 26/720 of empty space on the left and 38/180 above the ink: trim it so the wordmark's
-   ink, not its box, sits on the art edge (40px box → ink 23px tall, ink starts at x 0). */
+/* The SVG carries 26/720 empty on the left and 38/180 above the ink: trim so the ink sits on the edge. */
 .section-label__brand img {
   height: 40px;
   width: auto;
@@ -1106,9 +1108,8 @@ button {
 .playlist-card > img {
   width: 100%;
   height: auto;
+  aspect-ratio: 1;
   display: block;
-  box-sizing: border-box;
-  padding: 16px;
   object-fit: cover;
 }
 
