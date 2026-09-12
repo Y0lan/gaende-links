@@ -576,13 +576,15 @@ button {
 .section-label--stack {
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
-  padding-bottom: 14px;
+  gap: 18px;
+  padding: 6px 0 30px;
+  margin-bottom: 26px;
 }
 
 .section-label--stack h2 {
   white-space: nowrap;
   font-size: clamp(36px, 13.5vw, 72px);
+  line-height: .9;
 }
 
 .section-label__brand {
@@ -1100,7 +1102,7 @@ button {
   height: auto;
   display: block;
   box-sizing: border-box;
-  padding: 10px 10px 0;
+  padding: 16px;
   object-fit: cover;
 }
 
