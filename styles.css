@@ -572,6 +572,32 @@ button {
   -webkit-text-stroke: 1px var(--cream);
 }
 
+/* Track Hunt header: brand line on top, the title on one line below it. */
+.section-label--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-bottom: 14px;
+}
+
+.section-label--stack h2 {
+  white-space: nowrap;
+  font-size: clamp(36px, 13.5vw, 72px);
+}
+
+.section-label__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-label__brand img {
+  height: 20px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(238,31,9,.35));
+}
+
 .release-card {
   position: relative;
   min-height: 264px;
@@ -1072,8 +1098,9 @@ button {
 .playlist-card > img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1;
   display: block;
+  box-sizing: border-box;
+  padding: 10px 10px 0;
   object-fit: cover;
 }
 
