@@ -573,31 +573,37 @@ button {
 }
 
 /* Track Hunt header: brand line on top, the title on one line below it. */
+/* --art-inset = card border (1px) + art padding (16px): header text sits on the cover-art edge, not the card edge. */
 .section-label--stack {
+  --art-inset: 17px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
-  padding: 6px 0 30px;
+  gap: 22px;
+  padding: 6px var(--art-inset) 30px;
   margin-bottom: 26px;
 }
 
 .section-label--stack h2 {
   white-space: nowrap;
-  font-size: clamp(36px, 13.5vw, 72px);
+  font-size: clamp(34px, 12.6vw, 72px);
   line-height: .9;
 }
 
 .section-label__brand {
-  display: inline-flex;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
 }
 
+/* The SVG carries 26/720 of empty space on the left and 38/180 above the ink: trim it so the wordmark's
+   ink, not its box, sits on the art edge (40px box → ink 23px tall, ink starts at x 0). */
 .section-label__brand img {
-  height: 20px;
+  height: 40px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 0 10px rgba(238,31,9,.35));
+  margin: -8.4px 0 -8.7px -5.8px;
+  filter: drop-shadow(0 0 12px rgba(238,31,9,.35));
 }
 
 .release-card {
